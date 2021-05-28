@@ -9,13 +9,21 @@ const DiceSet = () => {
     const list = new Array(5).fill(1);
     return list.map(() => {
       const randValue = Math.floor(Math.random() * 6) + 1;
-      return { value: randValue };
+      return { locked: false, value: randValue };
     });
   });
 
+  const switchLock = (idx) => {
+    const newDiceList = [...diceList];
+    newDiceList[idx].locked = !newDiceList[idx].locked;
+    setDiceList(newDiceList);
+  };
+
   return (
     <div className="DiceSet">
-      {diceList.map((dive) => <Dice value={dive.value} />)}
+      {diceList.map((dice, idx) => (
+        <Dice idx={idx} switchLock={switchLock} locked={dice.locked} value={dice.value} />
+      ))}
     </div>
   );
 };

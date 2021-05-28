@@ -9,3 +9,7 @@
   width: 5rem;
   height: 5rem;
 }
+
+.Dice-locked{
+  background-color: grey;
+}
