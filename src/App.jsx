@@ -1,13 +1,13 @@
 import React from 'react';
 
-import DiceSet from 'components/DiceSet';
+import GameBoard from 'components/GameBoard';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <DiceSet />
+        <GameBoard />
       </header>
     </div>
   );

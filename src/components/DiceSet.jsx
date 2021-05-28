@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Dice from 'components/Dice';
 
 import 'styles/DiceSet.css';
 
-const DiceSet = () => {
-  const [diceList, setDiceList] = useState(() => {
-    const list = new Array(5).fill(1);
-    return list.map(() => {
-      const randValue = Math.floor(Math.random() * 6) + 1;
-      return { locked: false, value: randValue };
-    });
-  });
-
+const DiceSet = ({ diceList, setDiceList }) => {
   const switchLock = (idx) => {
+    if (diceList[idx].validated) { return; }
     const newDiceList = [...diceList];
     newDiceList[idx].locked = !newDiceList[idx].locked;
     setDiceList(newDiceList);
@@ -29,3 +23,8 @@ const DiceSet = () => {
 };
 
 export default DiceSet;
+
+DiceSet.propTypes = {
+  diceList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setDiceList: PropTypes.func.isRequired,
+};
