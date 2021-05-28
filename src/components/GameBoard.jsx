@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import RollButton from 'components/RollButton';
 
 import DiceSet from 'components/DiceSet';
 
 const GameBoard = () => {
+  const [rollsCount, setRollsCount] = useState(2);
   const [diceList, setDiceList] = useState(() => {
     const list = new Array(5).fill(1);
     return list.map(() => {
@@ -17,6 +19,7 @@ const GameBoard = () => {
       if (dice.locked) { return { ...dice, validated: true }; }
       return { ...dice, value: randValue };
     });
+    setRollsCount((currentRollsCount) => currentRollsCount - 1);
     setDiceList(list);
   };
 
@@ -24,7 +27,7 @@ const GameBoard = () => {
     <div>
       <h2> Yahtzee!! </h2>
       <DiceSet diceList={diceList} setDiceList={setDiceList} />
-      <button className="GameBoard-roll-button" type="button" onClick={rollDices}> Roll! </button>
+      <RollButton rollDices={rollDices} rollsCount={rollsCount} />
     </div>
   );
 };
