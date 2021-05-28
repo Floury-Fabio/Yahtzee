@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Dice from 'components/Dice';
+import DiceSet from 'components/DiceSet';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Dice value={4} />
+        <DiceSet />
       </header>
     </div>
   );
