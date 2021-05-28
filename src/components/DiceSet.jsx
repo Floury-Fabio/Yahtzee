@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import uuid from 'react-uuid';
+
 import Dice from 'components/Dice';
 
 import 'styles/DiceSet.css';
@@ -16,7 +18,13 @@ const DiceSet = ({ diceList, setDiceList }) => {
   return (
     <div className="DiceSet">
       {diceList.map((dice, idx) => (
-        <Dice idx={idx} switchLock={switchLock} locked={dice.locked} value={dice.value} />
+        <Dice
+          key={uuid()}
+          idx={idx}
+          switchLock={switchLock}
+          locked={dice.locked}
+          value={dice.value}
+        />
       ))}
     </div>
   );
