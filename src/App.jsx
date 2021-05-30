@@ -1,13 +1,13 @@
 import React from 'react';
 
-import GameBoard from 'components/GameBoard';
+import Yahtzee from 'components/Yahtzee';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <GameBoard />
+        <Yahtzee />
       </header>
     </div>
   );
