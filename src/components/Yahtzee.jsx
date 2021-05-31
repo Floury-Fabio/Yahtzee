@@ -11,6 +11,7 @@ import 'styles/Yahtzee.css';
 const Yahtzee = () => {
   const [rollsCount, setRollsCount] = useState(2);
   const [scores, setScores] = useState({});
+  const [rolling, setRolling] = useState(false);
 
   const [diceList, setDiceList] = useState(() => {
     const list = new Array(5).fill(1);
@@ -29,13 +30,22 @@ const Yahtzee = () => {
   };
 
   const rollDices = () => {
-    const list = diceList.map((dice) => {
-      const randValue = Math.floor(Math.random() * 6) + 1;
-      if (dice.locked) { return { ...dice, validated: true }; }
-      return { ...dice, value: randValue, rolling: true };
+    setDiceList(() => {
+      const newDiceList = diceList.map((dice) => {
+        const randValue = Math.floor(Math.random() * 6) + 1;
+        if (dice.locked) { return { ...dice, validated: true }; }
+        return { ...dice, value: randValue };
+      });
+      return newDiceList;
     });
+
+    setRolling(true);
+
+    setTimeout(() => {
+      setRolling(false);
+    }, 1000);
+
     setRollsCount((currentRollsCount) => currentRollsCount - 1);
-    setDiceList(list);
   };
 
   const score = Object.values(scores).reduce((acc, currentValue) => acc + currentValue, 0);
@@ -44,7 +54,7 @@ const Yahtzee = () => {
     <div>
       <div className="Yahtzee-head">
         <h2> Yahtzee!! </h2>
-        <GameBoard diceList={diceList} setDiceList={setDiceList} rollsCount={rollsCount} />
+        <GameBoard diceList={diceList} setDiceList={setDiceList} rolling={rolling} />
         <RollButton rollDices={rollDices} rollsCount={rollsCount} />
       </div>
       <div className="Yahtzee-body">

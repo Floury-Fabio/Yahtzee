@@ -7,7 +7,7 @@ import Dice from 'components/Dice';
 
 import 'styles/DiceSet.css';
 
-const DiceSet = ({ diceList, setDiceList }) => {
+const DiceSet = ({ diceList, setDiceList, rolling }) => {
   const switchLock = (idx) => {
     if (diceList[idx].validated) { return; }
     const newDiceList = [...diceList];
@@ -24,7 +24,7 @@ const DiceSet = ({ diceList, setDiceList }) => {
           switchLock={switchLock}
           locked={dice.locked}
           value={dice.value}
-          rolling={dice.rolling}
+          rolling={rolling && !dice.locked}
         />
       ))}
     </div>
@@ -35,5 +35,6 @@ export default DiceSet;
 
 DiceSet.propTypes = {
   diceList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  rolling: PropTypes.bool.isRequired,
   setDiceList: PropTypes.func.isRequired,
 };
