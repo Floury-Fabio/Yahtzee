@@ -13,20 +13,32 @@ const Yahtzee = () => {
   const [scores, setScores] = useState({});
   const [rolling, setRolling] = useState(false);
 
-  const [diceList, setDiceList] = useState(() => {
+  const initDiceList = () => {
     const list = new Array(5).fill(1);
     return list.map(() => {
       const randValue = Math.floor(Math.random() * 6) + 1;
       return {
-        validated: false, rolling: false, locked: false, value: randValue,
+        validated: false, locked: false, value: randValue,
       };
     });
-  });
+  };
+
+  const animRoll = () => {
+    setRolling(true);
+
+    setTimeout(() => {
+      setRolling(false);
+    }, 1000);
+  };
+
+  const [diceList, setDiceList] = useState(initDiceList());
 
   const evalScore = (rule) => {
     const dicesValues = diceList.map((dice) => dice.value);
     setScores({ ...scores, [rule.name]: rule.calcScore(dicesValues) });
     setRollsCount(2);
+    setDiceList(initDiceList);
+    animRoll();
   };
 
   const rollDices = () => {
@@ -39,12 +51,7 @@ const Yahtzee = () => {
       return newDiceList;
     });
 
-    setRolling(true);
-
-    setTimeout(() => {
-      setRolling(false);
-    }, 1000);
-
+    animRoll();
     setRollsCount((currentRollsCount) => currentRollsCount - 1);
   };
 
