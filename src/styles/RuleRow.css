@@ -5,3 +5,11 @@
 .RuleRow-description  {
   text-align: right;
 }
+
+.RuleRow-disabled {
+  background-color: grey;
+}
+
+.RuleRow-active {
+  background-color: white;
+}

@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import RollButton from 'components/RollButton';
 
 import DiceSet from 'components/DiceSet';
 
-const GameBoard = () => {
+const GameBoard = ({ diceList, setDiceList }) => {
   const [rollsCount, setRollsCount] = useState(2);
-  const [diceList, setDiceList] = useState(() => {
-    const list = new Array(5).fill(1);
-    return list.map(() => {
-      const randValue = Math.floor(Math.random() * 6) + 1;
-      return { validated: false, locked: false, value: randValue };
-    });
-  });
 
   const rollDices = () => {
     const list = diceList.map((dice) => {
@@ -32,3 +27,8 @@ const GameBoard = () => {
   );
 };
 export default GameBoard;
+
+GameBoard.propTypes = {
+  diceList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setDiceList: PropTypes.func.isRequired,
+};
