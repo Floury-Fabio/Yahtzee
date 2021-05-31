@@ -24,6 +24,7 @@ const DiceSet = ({ diceList, setDiceList }) => {
           switchLock={switchLock}
           locked={dice.locked}
           value={dice.value}
+          rolling={dice.rolling}
         />
       ))}
     </div>

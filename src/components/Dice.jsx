@@ -6,25 +6,23 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import 'styles/Dice.css';
 
 const Dice = ({
-  idx, switchLock, locked, value,
+  idx, switchLock, locked, value, rolling,
 }) => {
   const diceNames = ['one', 'two', 'three', 'four', 'five', 'six'];
-  const classes = `Dice ${locked ? 'Dice-locked' : ''} fas fa-dice-${diceNames[value - 1]} fa-4x `;
+  const classes = `Dice ${locked ? 'Dice-locked' : ''} ${rolling ? 'Dice-rolling' : ''} fas fa-dice-${diceNames[value - 1]} fa-4x `;
   const handleClick = () => {
     switchLock(idx);
   };
 
-  const handleKeyDown = () => {
-    console.log('ke');
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      switchLock(idx);
+    }
   };
 
   return (
 
-  // <div className={`Dice ${locked ? 'Dice-locked' : ''}`}
-  // onClick={handleClick} onKeyDown={handleKeyDown} role="button" tabIndex={idx}>
-  //   <FontAwesomeIcon icon={['fas', 'fa-dice-four']} />
-  // </div>
-    <i className={classes} />
+    <i className={classes} onClick={handleClick} onKeyDown={handleKeyDown} role="button" tabIndex={idx} aria-label="dice" />
   );
 };
 
@@ -32,7 +30,8 @@ export default Dice;
 
 Dice.propTypes = {
   idx: PropTypes.number.isRequired,
-  switchLock: PropTypes.func.isRequired,
   locked: PropTypes.bool.isRequired,
+  switchLock: PropTypes.func.isRequired,
+  rolling: PropTypes.bool.isRequired,
   value: PropTypes.number.isRequired,
 };

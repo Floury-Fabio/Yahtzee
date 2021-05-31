@@ -10,6 +10,19 @@
   color: white;
 }
 
+.Dice-rolling {
+  animation: spin 1s ease-out;
+}
+
 .Dice-locked{
-  background-color: grey;
+  color: grey;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

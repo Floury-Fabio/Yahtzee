@@ -16,7 +16,9 @@ const Yahtzee = () => {
     const list = new Array(5).fill(1);
     return list.map(() => {
       const randValue = Math.floor(Math.random() * 6) + 1;
-      return { validated: false, locked: false, value: randValue };
+      return {
+        validated: false, rolling: false, locked: false, value: randValue,
+      };
     });
   });
 
@@ -30,7 +32,7 @@ const Yahtzee = () => {
     const list = diceList.map((dice) => {
       const randValue = Math.floor(Math.random() * 6) + 1;
       if (dice.locked) { return { ...dice, validated: true }; }
-      return { ...dice, value: randValue };
+      return { ...dice, value: randValue, rolling: true };
     });
     setRollsCount((currentRollsCount) => currentRollsCount - 1);
     setDiceList(list);
