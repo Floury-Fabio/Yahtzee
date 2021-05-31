@@ -3,11 +3,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-style: solid;
-  border-width: 1px;
-  box-shadow: 3px 3px 3px grey;
+  border-color: black;
+  text-shadow: 3px 3px 3px grey;
   width: 5rem;
   height: 5rem;
+  color: white;
 }
 
 .Dice-locked{

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import 'styles/RuleRow.css';
 
 const RuleRow = ({ score, rule, evalScore }) => {
-  if (rule.name === 'Threes') { console.log(score); }
   const handleClick = () => {
     evalScore(rule);
   };

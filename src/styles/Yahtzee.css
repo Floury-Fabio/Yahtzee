@@ -1,0 +1,14 @@
+.Yahtzee-head {
+  background-color: #04AA6D;
+}
+
+.Yahtzee-body {
+  background-color: white;
+  margin-top: 0px;
+  padding-top: 25px;
+  padding: 2px;
+}
+
+.Yahtzee-body-title {
+  margin-top: 0px;
+}

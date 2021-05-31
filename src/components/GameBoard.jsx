@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 import DiceSet from 'components/DiceSet';
 
+import 'styles/GameBoard.css';
+
 const GameBoard = ({ diceList, setDiceList }) => (
-  <div>
+  <div className="GameBoard">
     <DiceSet diceList={diceList} setDiceList={setDiceList} />
   </div>
 );

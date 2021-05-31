@@ -8,7 +8,7 @@ import RuleRow from 'components/RuleRow';
 import 'styles/RulesList.css';
 
 const RulesList = ({ rules, scores, evalScore }) => (
-  <table className="RulesList">
+  <table className="RulesList" cellSpacing="0">
     <tbody>
       {rules.map((rule) => (
         <RuleRow

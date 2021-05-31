@@ -6,6 +6,8 @@ import RollButton from 'components/RollButton';
 
 import { upperRules, lowerRules } from 'services/rules/rules';
 
+import 'styles/Yahtzee.css';
+
 const Yahtzee = () => {
   const [rollsCount, setRollsCount] = useState(2);
   const [scores, setScores] = useState({});
@@ -38,16 +40,20 @@ const Yahtzee = () => {
 
   return (
     <div>
-      <h2> Yahtzee!! </h2>
-      <GameBoard diceList={diceList} setDiceList={setDiceList} rollsCount={rollsCount} />
-      <RollButton rollDices={rollDices} rollsCount={rollsCount} />
-      <h3> Upper </h3>
-      <RulesList rules={upperRules} evalScore={evalScore} scores={scores} />
-      <h3> Lower </h3>
-      <RulesList rules={lowerRules} evalScore={evalScore} scores={scores} />
-      <h4>
-        {`Score ${score}`}
-      </h4>
+      <div className="Yahtzee-head">
+        <h2> Yahtzee!! </h2>
+        <GameBoard diceList={diceList} setDiceList={setDiceList} rollsCount={rollsCount} />
+        <RollButton rollDices={rollDices} rollsCount={rollsCount} />
+      </div>
+      <div className="Yahtzee-body">
+        <h3 className="Yahtzee-body-title"> Upper </h3>
+        <RulesList rules={upperRules} evalScore={evalScore} scores={scores} />
+        <h3> Lower </h3>
+        <RulesList rules={lowerRules} evalScore={evalScore} scores={scores} />
+        <h4>
+          {`Score ${score}`}
+        </h4>
+      </div>
     </div>
   );
 };
