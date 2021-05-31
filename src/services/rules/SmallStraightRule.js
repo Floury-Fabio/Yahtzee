@@ -1,6 +1,12 @@
 import Rule from 'services/rules/Rule';
 
 class LargeStraightRule extends Rule {
+  constructor() {
+    super();
+    this.name = 'Small Straight';
+    this.description = '30 points for a small straight';
+  }
+
   calcScore(values) {
     const valuesSet = new Set(values);
 
