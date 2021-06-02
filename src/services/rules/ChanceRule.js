@@ -8,7 +8,6 @@ class ChanceRule extends Rule {
   }
 
   calcScore(values) {
-    console.log(values);
     return this.sum(values);
   }
 }

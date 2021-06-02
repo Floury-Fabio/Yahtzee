@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-
 import 'styles/Dice.css';
 
 const Dice = ({
