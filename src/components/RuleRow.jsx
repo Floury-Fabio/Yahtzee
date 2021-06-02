@@ -4,17 +4,18 @@ import PropTypes from 'prop-types';
 import 'styles/RuleRow.css';
 
 const RuleRow = ({ score, rule, evalScore }) => {
+  const disabled = score || score === 0;
   const handleClick = () => {
-    evalScore(rule);
+    if (!disabled) { evalScore(rule); }
   };
 
   return (
-    <tr className={`RuleRow RuleRow-${score || score === 0 ? 'disabled' : 'active'}`} onClick={handleClick}>
+    <tr className={`RuleRow RuleRow-${disabled ? 'disabled' : 'active'}`} onClick={handleClick}>
       <td className="RuleRow-name">
         {rule.name}
       </td>
       <td className="RuleRow-description">
-        {rule.description}
+        {disabled ? score : rule.description}
       </td>
     </tr>
   );
