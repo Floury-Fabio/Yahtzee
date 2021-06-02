@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import uuid from 'react-uuid';
-
 import RuleRow from 'components/RuleRow';
 
 import 'styles/RulesList.css';
@@ -12,7 +10,7 @@ const RulesList = ({ rules, scores, evalScore }) => (
     <tbody>
       {rules.map((rule) => (
         <RuleRow
-          key={uuid()}
+          key={rule.name}
           rule={rule}
           score={scores[rule.name]}
           evalScore={evalScore}

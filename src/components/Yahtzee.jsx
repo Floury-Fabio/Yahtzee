@@ -13,6 +13,7 @@ const Yahtzee = () => {
   const [scores, setScores] = useState({});
   const [rolling, setRolling] = useState(false);
 
+  console.log('rand');
   const initDiceList = () => {
     const list = new Array(5).fill(1);
     return list.map(() => {
