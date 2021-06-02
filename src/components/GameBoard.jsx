@@ -7,7 +7,9 @@ import Dice from 'components/Dice';
 
 import 'styles/GameBoard.css';
 
-const GameBoard = ({ diceList, rolling, switchLock }) => (
+const GameBoard = ({
+  diceList, rolling, switchLock, rollsCount,
+}) => (
   <div className="GameBoard">
     {diceList.map((dice, idx) => (
       <Dice
@@ -17,6 +19,7 @@ const GameBoard = ({ diceList, rolling, switchLock }) => (
         locked={dice.locked}
         value={dice.value}
         rolling={rolling && !dice.locked}
+        rollsCount={rollsCount}
       />
     ))}
   </div>
@@ -27,5 +30,6 @@ export default GameBoard;
 GameBoard.propTypes = {
   diceList: PropTypes.arrayOf(PropTypes.object).isRequired,
   rolling: PropTypes.bool.isRequired,
+  rollsCount: PropTypes.number.isRequired,
   switchLock: PropTypes.func.isRequired,
 };

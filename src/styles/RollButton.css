@@ -7,3 +7,7 @@
   background: #7f7fd5;
   font-size: 30px;
 }
+
+.RollButton:hover{
+  cursor: pointer;
+}
