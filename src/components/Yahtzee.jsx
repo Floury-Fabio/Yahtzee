@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import EndGameModal from 'components/EndGameModal';
+import FinalScoresModal from 'components/FinalScoresModal';
 import GameBoard from 'components/GameBoard';
 import RulesList from 'components/RulesList';
 import RollButton from 'components/RollButton';
@@ -14,6 +15,7 @@ const Yahtzee = () => {
   const [scores, setScores] = useState({});
   const [rolling, setRolling] = useState(false);
   const [endGameModaldisplayed, setEndGameModalDisplayed] = useState(false);
+  const [finalScoreDisplayed, setFinalScoreDisplayed] = useState(false);
 
   const initDiceList = () => {
     const list = new Array(5).fill(1);
@@ -59,6 +61,10 @@ const Yahtzee = () => {
 
   const score = Object.values(scores).reduce((acc, currentValue) => acc + currentValue, 0);
 
+  const handleClickFinalScores = () => {
+    setFinalScoreDisplayed(true);
+  };
+
   useEffect(() => {
     if (Object.keys(scores).length === upperRules.length + lowerRules.length) {
       setEndGameModalDisplayed(true);
@@ -77,10 +83,14 @@ const Yahtzee = () => {
         <RulesList rules={upperRules} evalScore={evalScore} scores={scores} />
         <h3 className="Yahtzee-body-title"> Lower </h3>
         <RulesList rules={lowerRules} evalScore={evalScore} scores={scores} />
+        <button className="Yahtzee-finalScores-button" type="button" onClick={handleClickFinalScores}>
+          FinalScores
+        </button>
         <h2>
           {`Total Score: ${score}`}
         </h2>
       </div>
+      <FinalScoresModal displayed={finalScoreDisplayed} setDisplayed={setFinalScoreDisplayed} />
       <EndGameModal
         displayed={endGameModaldisplayed}
         score={score}

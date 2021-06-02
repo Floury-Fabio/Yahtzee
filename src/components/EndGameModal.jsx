@@ -17,17 +17,17 @@ const EndGameModal = ({ displayed, setDisplayed, score }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let scoresList = localStorage.getItem('scoresList');
+    let finalScoresList = localStorage.getItem('finalScoresList');
 
-    if (!scoresList) {
-      scoresList = [];
+    if (!finalScoresList) {
+      finalScoresList = [];
     } else {
-      scoresList = JSON.parse(scoresList);
+      finalScoresList = JSON.parse(finalScoresList);
     }
 
-    scoresList.push({ nicknames: nickname, scorek: score });
-    scoresList = JSON.stringify(scoresList);
-    localStorage.setItem('scoresList', scoresList);
+    finalScoresList.push({ nickname, score });
+    finalScoresList = JSON.stringify(finalScoresList);
+    localStorage.setItem('finalScoresList', finalScoresList);
   };
 
   const handleChange = (e) => {
