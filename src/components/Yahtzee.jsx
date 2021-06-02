@@ -11,7 +11,7 @@ import { upperRules, lowerRules } from 'services/rules/rules';
 import 'styles/Yahtzee.css';
 
 const Yahtzee = () => {
-  const [rollsCount, setRollsCount] = useState(2);
+  const [rollsCount, setRollsCount] = useState(3);
   const [scores, setScores] = useState({});
   const [rolling, setRolling] = useState(false);
   const [endGameModaldisplayed, setEndGameModalDisplayed] = useState(false);
@@ -43,7 +43,7 @@ const Yahtzee = () => {
   const evalScore = (rule) => {
     const dicesValues = diceList.map((dice) => dice.value);
     setScores({ ...scores, [rule.name]: rule.calcScore(dicesValues) });
-    setRollsCount(2);
+    setRollsCount(3);
     setDiceList(initDiceList);
     animRoll();
   };
@@ -86,8 +86,9 @@ const Yahtzee = () => {
         <h2> Yahtzee!! </h2>
         <GameBoard
           diceList={diceList}
-          setDiceList={setDiceList}
           rolling={rolling}
+          rollsCount={rollsCount}
+          setDiceList={setDiceList}
           switchLock={switchLock}
         />
         <RollButton rollDices={rollDices} rollsCount={rollsCount} />
