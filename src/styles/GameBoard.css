@@ -1,3 +1,4 @@
 .GameBoard {
+  display: flex;
   background-color: #04AA6D;
 }
