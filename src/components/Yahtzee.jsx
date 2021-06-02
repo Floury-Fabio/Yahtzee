@@ -67,11 +67,11 @@ const Yahtzee = () => {
       <div className="Yahtzee-body">
         <h3 className="Yahtzee-body-title"> Upper </h3>
         <RulesList rules={upperRules} evalScore={evalScore} scores={scores} />
-        <h3> Lower </h3>
+        <h3 className="Yahtzee-body-title"> Lower </h3>
         <RulesList rules={lowerRules} evalScore={evalScore} scores={scores} />
-        <h4>
-          {`Score ${score}`}
-        </h4>
+        <h2>
+          {`Total Score: ${score}`}
+        </h2>
       </div>
     </div>
   );
