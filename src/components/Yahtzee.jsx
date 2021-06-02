@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import EndGameModal from 'components/EndGameModal';
 import GameBoard from 'components/GameBoard';
 import RulesList from 'components/RulesList';
 import RollButton from 'components/RollButton';
@@ -12,6 +13,7 @@ const Yahtzee = () => {
   const [rollsCount, setRollsCount] = useState(2);
   const [scores, setScores] = useState({});
   const [rolling, setRolling] = useState(false);
+  const [displayed, setDisplayed] = useState(false);
 
   const initDiceList = () => {
     const list = new Array(5).fill(1);
@@ -57,6 +59,12 @@ const Yahtzee = () => {
 
   const score = Object.values(scores).reduce((acc, currentValue) => acc + currentValue, 0);
 
+  useEffect(() => {
+    if (Object.keys(scores).length === upperRules.length + lowerRules.length) {
+      setDisplayed(true);
+    }
+  }, [scores]);
+
   return (
     <div>
       <div className="Yahtzee-head">
@@ -73,6 +81,7 @@ const Yahtzee = () => {
           {`Total Score: ${score}`}
         </h2>
       </div>
+      <EndGameModal displayed={displayed} score={score} setDisplayed={setDisplayed} />
     </div>
   );
 };
