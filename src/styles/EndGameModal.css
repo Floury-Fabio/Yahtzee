@@ -30,6 +30,10 @@
   font-weight: bold;
 }
 
+.EndGameModal-input-nickname {
+  margin-left: 10px;
+}
+
 .EndGameModal-close:hover,
 .EndGameModal-close:focus {
   color: black;

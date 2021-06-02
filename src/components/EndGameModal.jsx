@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import 'styles/EndGameModal.css';
 
 const EndGameModal = ({ displayed, setDisplayed, score }) => {
+  const [nickname, setNickname] = useState('');
   const handleClickClose = () => {
     setDisplayed(false);
   };
@@ -12,6 +13,25 @@ const EndGameModal = ({ displayed, setDisplayed, score }) => {
     if (event.keyCode === 13) {
       setDisplayed(false);
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let scoresList = localStorage.getItem('scoresList');
+
+    if (!scoresList) {
+      scoresList = [];
+    } else {
+      scoresList = JSON.parse(scoresList);
+    }
+
+    scoresList.push({ nicknames: nickname, scorek: score });
+    scoresList = JSON.stringify(scoresList);
+    localStorage.setItem('scoresList', scoresList);
+  };
+
+  const handleChange = (e) => {
+    setNickname(e.target.value);
   };
 
   return (
@@ -24,6 +44,13 @@ const EndGameModal = ({ displayed, setDisplayed, score }) => {
         <h3>
           { score }
         </h3>
+        <form onSubmit={handleSubmit}>
+          <label className="EndGameModal-label-nickname" htmlFor="nickname">
+            Nickname:
+            <input className="EndGameModal-input-nickname" type="text" id="nickname" onChange={handleChange} value={nickname} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const Yahtzee = () => {
   const [rollsCount, setRollsCount] = useState(2);
   const [scores, setScores] = useState({});
   const [rolling, setRolling] = useState(false);
-  const [displayed, setDisplayed] = useState(false);
+  const [displayed, setDisplayed] = useState(true);
 
   const initDiceList = () => {
     const list = new Array(5).fill(1);
