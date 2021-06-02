@@ -17,6 +17,9 @@ const Yahtzee = () => {
   const [endGameModaldisplayed, setEndGameModalDisplayed] = useState(false);
   const [finalScoreDisplayed, setFinalScoreDisplayed] = useState(false);
 
+  const score = Object.values(scores).reduce((acc, currentValue) => acc + currentValue, 0);
+  const gameIsEnded = Object.keys(scores).length === upperRules.length + lowerRules.length;
+
   const initDiceList = () => {
     const list = new Array(5).fill(1);
     return list.map(() => {
@@ -27,6 +30,8 @@ const Yahtzee = () => {
     });
   };
 
+  const [diceList, setDiceList] = useState(initDiceList());
+
   const animRoll = () => {
     setRolling(true);
 
@@ -34,8 +39,6 @@ const Yahtzee = () => {
       setRolling(false);
     }, 1000);
   };
-
-  const [diceList, setDiceList] = useState(initDiceList());
 
   const evalScore = (rule) => {
     const dicesValues = diceList.map((dice) => dice.value);
@@ -59,14 +62,20 @@ const Yahtzee = () => {
     setRollsCount((currentRollsCount) => currentRollsCount - 1);
   };
 
-  const score = Object.values(scores).reduce((acc, currentValue) => acc + currentValue, 0);
-
   const handleClickFinalScores = () => {
     setFinalScoreDisplayed(true);
   };
 
+  const switchLock = (idx) => {
+    if (rollsCount === 0) { return; }
+    if (diceList[idx].validated) { return; }
+    const newDiceList = [...diceList];
+    newDiceList[idx].locked = !newDiceList[idx].locked;
+    setDiceList(newDiceList);
+  };
+
   useEffect(() => {
-    if (Object.keys(scores).length === upperRules.length + lowerRules.length) {
+    if (gameIsEnded) {
       setEndGameModalDisplayed(true);
     }
   }, [scores]);
@@ -75,7 +84,12 @@ const Yahtzee = () => {
     <div>
       <div className="Yahtzee-head">
         <h2> Yahtzee!! </h2>
-        <GameBoard diceList={diceList} setDiceList={setDiceList} rolling={rolling} />
+        <GameBoard
+          diceList={diceList}
+          setDiceList={setDiceList}
+          rolling={rolling}
+          switchLock={switchLock}
+        />
         <RollButton rollDices={rollDices} rollsCount={rollsCount} />
       </div>
       <div className="Yahtzee-body">
