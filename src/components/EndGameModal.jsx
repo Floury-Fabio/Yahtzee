@@ -28,6 +28,7 @@ const EndGameModal = ({ displayed, setDisplayed, score }) => {
     finalScoresList.push({ nickname, score });
     finalScoresList = JSON.stringify(finalScoresList);
     localStorage.setItem('finalScoresList', finalScoresList);
+    setDisplayed(false);
   };
 
   const handleChange = (e) => {
