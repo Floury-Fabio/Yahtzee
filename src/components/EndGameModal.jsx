@@ -49,7 +49,7 @@ const EndGameModal = ({ displayed, setDisplayed, score }) => {
             Nickname:
             <input className="EndGameModal-input-nickname" type="text" id="nickname" onChange={handleChange} value={nickname} />
           </label>
-          <input type="submit" value="Submit" />
+          <input className="EndGameModal-submit" type="submit" value="Submit" />
         </form>
       </div>
     </div>

@@ -13,7 +13,7 @@ const Yahtzee = () => {
   const [rollsCount, setRollsCount] = useState(2);
   const [scores, setScores] = useState({});
   const [rolling, setRolling] = useState(false);
-  const [displayed, setDisplayed] = useState(true);
+  const [endGameModaldisplayed, setEndGameModalDisplayed] = useState(false);
 
   const initDiceList = () => {
     const list = new Array(5).fill(1);
@@ -61,7 +61,7 @@ const Yahtzee = () => {
 
   useEffect(() => {
     if (Object.keys(scores).length === upperRules.length + lowerRules.length) {
-      setDisplayed(true);
+      setEndGameModalDisplayed(true);
     }
   }, [scores]);
 
@@ -81,7 +81,11 @@ const Yahtzee = () => {
           {`Total Score: ${score}`}
         </h2>
       </div>
-      <EndGameModal displayed={displayed} score={score} setDisplayed={setDisplayed} />
+      <EndGameModal
+        displayed={endGameModaldisplayed}
+        score={score}
+        setDisplayed={setEndGameModalDisplayed}
+      />
     </div>
   );
 };
