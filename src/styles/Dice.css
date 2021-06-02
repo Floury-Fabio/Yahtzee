@@ -1,0 +1,28 @@
+.Dice{
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: black;
+  text-shadow: 3px 3px 3px grey;
+  width: 5rem;
+  height: 5rem;
+  color: white;
+}
+
+.Dice-rolling {
+  animation: spin 1s ease-out;
+}
+
+.Dice-locked{
+  color: grey;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
