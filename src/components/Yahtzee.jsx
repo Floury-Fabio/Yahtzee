@@ -91,7 +91,7 @@ const Yahtzee = () => {
           setDiceList={setDiceList}
           switchLock={switchLock}
         />
-        <RollButton rollDices={rollDices} rollsCount={rollsCount} />
+        <RollButton rollDices={rollDices} rollsCount={rollsCount} rolling={rolling} />
       </div>
       <div className="Yahtzee-body">
         <h3 className="Yahtzee-body-title"> Upper </h3>
