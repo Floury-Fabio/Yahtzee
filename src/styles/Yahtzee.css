@@ -36,6 +36,10 @@
   cursor: pointer; 
 }
 
+.Yahtzee-restart-icon:hover {
+  cursor: pointer; 
+}
+
 .Yahtzee-finalScores-button {
   margin-top: 20px;
   background-color: #7f7fd5;
