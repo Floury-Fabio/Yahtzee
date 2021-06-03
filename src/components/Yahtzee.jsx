@@ -43,11 +43,11 @@ const Yahtzee = () => {
   };
 
   const evalScore = (rule) => {
+    if (rollsCount === 3) { return; }
     const dicesValues = diceList.map((dice) => dice.value);
     setScores({ ...scores, [rule.name]: rule.calcScore(dicesValues) });
     setRollsCount(3);
     setDiceList(initDiceList);
-    animRoll();
   };
 
   const handleClickRules = () => {
@@ -78,6 +78,18 @@ const Yahtzee = () => {
     setFinalScoreDisplayed(true);
   };
 
+  const handleClickRestart = () => {
+    setScores({});
+    setRollsCount(3);
+  };
+
+  const handleKeyDownRestart = (event) => {
+    if (event.keyCode === 13) {
+      setScores({});
+      setRollsCount(3);
+    }
+  };
+
   const switchLock = (idx) => {
     const newDiceList = [...diceList];
     newDiceList[idx].locked = !newDiceList[idx].locked;
@@ -93,9 +105,8 @@ const Yahtzee = () => {
   return (
     <div className="Yahtzee">
       <div className="Yahtzee-head">
-        <div className="Yahtzee-rules-icon">
-          <i className="fas fa-question" onClick={handleClickRules} onKeyDown={handleKeyDownRules} role="button" tabIndex={0} aria-label="rules" />
-        </div>
+        <i className="Yahtzee-restart-icon fas fa-undo" onClick={handleClickRestart} onKeyDown={handleKeyDownRestart} role="button" tabIndex={-1} aria-label="rules" />
+        <i className="Yahtzee-rules-icon fas fa-question" onClick={handleClickRules} onKeyDown={handleKeyDownRules} role="button" tabIndex={0} aria-label="rules" />
         <h2> Yahtzee!! </h2>
         <GameBoard
           diceList={diceList}
