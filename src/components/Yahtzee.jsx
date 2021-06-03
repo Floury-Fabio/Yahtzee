@@ -43,11 +43,11 @@ const Yahtzee = () => {
   };
 
   const evalScore = (rule) => {
+    if (rollsCount === 3) { return; }
     const dicesValues = diceList.map((dice) => dice.value);
     setScores({ ...scores, [rule.name]: rule.calcScore(dicesValues) });
     setRollsCount(3);
     setDiceList(initDiceList);
-    animRoll();
   };
 
   const handleClickRules = () => {
