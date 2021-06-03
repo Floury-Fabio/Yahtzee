@@ -4,6 +4,7 @@ import EndGameModal from 'components/EndGameModal';
 import FinalScoresModal from 'components/FinalScoresModal';
 import GameBoard from 'components/GameBoard';
 import RulesList from 'components/RulesList';
+import RulesModal from 'components/RulesModal';
 import RollButton from 'components/RollButton';
 
 import { upperRules, lowerRules } from 'services/rules/rules';
@@ -16,6 +17,7 @@ const Yahtzee = () => {
   const [rolling, setRolling] = useState(false);
   const [endGameModaldisplayed, setEndGameModalDisplayed] = useState(false);
   const [finalScoreDisplayed, setFinalScoreDisplayed] = useState(false);
+  const [rulesDisplayed, setRulesDisplayed] = useState(false);
 
   const score = Object.values(scores).reduce((acc, currentValue) => acc + currentValue, 0);
   const gameIsEnded = Object.keys(scores).length === upperRules.length + lowerRules.length;
@@ -46,6 +48,16 @@ const Yahtzee = () => {
     setRollsCount(3);
     setDiceList(initDiceList);
     animRoll();
+  };
+
+  const handleClickRules = () => {
+    setRulesDisplayed(true);
+  };
+
+  const handleKeyDownRules = (event) => {
+    if (event.keyCode === 13) {
+      setRulesDisplayed(true);
+    }
   };
 
   const rollDices = () => {
@@ -81,6 +93,9 @@ const Yahtzee = () => {
   return (
     <div className="Yahtzee">
       <div className="Yahtzee-head">
+        <div className="Yahtzee-rules-icon">
+          <i className="fas fa-question" onClick={handleClickRules} onKeyDown={handleKeyDownRules} role="button" tabIndex={0} aria-label="rules" />
+        </div>
         <h2> Yahtzee!! </h2>
         <GameBoard
           diceList={diceList}
@@ -109,6 +124,7 @@ const Yahtzee = () => {
         score={score}
         setDisplayed={setEndGameModalDisplayed}
       />
+      <RulesModal displayed={rulesDisplayed} setDisplayed={setRulesDisplayed} />
     </div>
   );
 };
