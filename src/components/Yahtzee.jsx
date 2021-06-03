@@ -96,7 +96,7 @@ const Yahtzee = () => {
       <div className="Yahtzee-body">
         <h3 className="Yahtzee-body-title"> Upper </h3>
         <RulesList rules={upperRules} evalScore={evalScore} scores={scores} />
-        <h3 className="Yahtzee-body-title mt-3"> Lower </h3>
+        <h3 className="Yahtzee-body-title"> Lower </h3>
         <RulesList rules={lowerRules} evalScore={evalScore} scores={scores} />
         <button className="Yahtzee-finalScores-button" type="button" onClick={handleClickFinalScores}>
           FinalScores

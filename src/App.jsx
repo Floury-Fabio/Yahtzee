@@ -2,7 +2,6 @@ import React from 'react';
 
 import Yahtzee from 'components/Yahtzee';
 import './App.css';
-import './styles/margin.css';
 
 function App() {
   return (
