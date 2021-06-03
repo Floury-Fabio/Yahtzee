@@ -1,10 +1,8 @@
 .Dice{
   margin: 1rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
   text-shadow: 3px 3px 3px grey;
-  width: 5rem;
+  min-width: 5rem;
   height: 5rem;
   color: white;
 }
