@@ -81,7 +81,7 @@ const Yahtzee = () => {
   }, [scores]);
 
   return (
-    <div>
+    <div className="Yahtzee">
       <div className="Yahtzee-head">
         <h2> Yahtzee!! </h2>
         <GameBoard
