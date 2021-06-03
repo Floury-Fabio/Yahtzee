@@ -9,7 +9,7 @@ class FoulHouseRule extends Rule {
 
   calcScore(values) {
     return this.getFreqs(values).includes(2) && this.getFreqs(values).includes(3)
-      ? this.sum(values) : 0;
+      ? 25 : 0;
   }
 }
 
