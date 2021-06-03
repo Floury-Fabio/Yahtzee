@@ -10,9 +10,11 @@ const RollButton = ({ rollsCount, rollDices, rolling }) => {
     rollDices();
   };
 
+  const textButton = (rollsCount === 3 ? 'Play' : `${rollsCount} rolls left`);
+
   return (
     <button className="RollButton" type="button" onClick={handleClick} disabled={disabled}>
-      {`${rollsCount} rolls left`}
+      {textButton}
     </button>
   );
 };
