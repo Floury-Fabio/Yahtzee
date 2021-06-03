@@ -1,13 +1,21 @@
 .RollButton{
   background-color: cyan;
-  width: 14rem;
-  height: 4rem;
+  width: 10rem;
+  height: 3rem;
   border-radius: 10px;
   border-width: 0px;
   background: #7f7fd5;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .RollButton:hover{
   cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .RollButton {
+    width: 14rem;
+    height: 4rem;
+    font-size: 30px;
+  }
 }
