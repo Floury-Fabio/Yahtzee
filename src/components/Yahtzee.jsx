@@ -25,7 +25,7 @@ const Yahtzee = () => {
     return list.map(() => {
       const randValue = Math.floor(Math.random() * 6) + 1;
       return {
-        validated: false, locked: false, value: randValue,
+        locked: false, value: randValue,
       };
     });
   };
@@ -52,7 +52,7 @@ const Yahtzee = () => {
     setDiceList(() => {
       const newDiceList = diceList.map((dice) => {
         const randValue = Math.floor(Math.random() * 6) + 1;
-        if (dice.locked) { return { ...dice, validated: true }; }
+        if (dice.locked) { return { ...dice }; }
         return { ...dice, value: randValue };
       });
       return newDiceList;
@@ -67,8 +67,6 @@ const Yahtzee = () => {
   };
 
   const switchLock = (idx) => {
-    if (rollsCount === 0) { return; }
-    if (diceList[idx].validated) { return; }
     const newDiceList = [...diceList];
     newDiceList[idx].locked = !newDiceList[idx].locked;
     setDiceList(newDiceList);
