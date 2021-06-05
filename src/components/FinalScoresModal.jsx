@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import uuid from 'react-uuid';
+
 import 'styles/FinalScoresModal.css';
 
-const EndGameModal = ({ displayed, setDisplayed }) => {
+const FinalScoresModal = ({ displayed, setDisplayed }) => {
   const handleClickClose = () => {
     setDisplayed(false);
   };
@@ -23,7 +25,7 @@ const EndGameModal = ({ displayed, setDisplayed }) => {
         <h3 className="FinalScoresModal-title"> Final Scores </h3>
         {finalScoresList
           ? finalScoresList.map((finalScore) => (
-            <li>
+            <li key={uuid()}>
               { `${finalScore.nickname}: ${finalScore.score}` }
             </li>
           ))
@@ -33,9 +35,9 @@ const EndGameModal = ({ displayed, setDisplayed }) => {
   );
 };
 
-export default EndGameModal;
+export default FinalScoresModal;
 
-EndGameModal.propTypes = {
+FinalScoresModal.propTypes = {
   displayed: PropTypes.bool.isRequired,
   setDisplayed: PropTypes.func.isRequired,
 };

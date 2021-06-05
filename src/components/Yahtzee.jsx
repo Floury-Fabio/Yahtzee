@@ -81,12 +81,14 @@ const Yahtzee = () => {
   const handleClickRestart = () => {
     setScores({});
     setRollsCount(3);
+    setDiceList(initDiceList());
   };
 
   const handleKeyDownRestart = (event) => {
     if (event.keyCode === 13) {
       setScores({});
       setRollsCount(3);
+      setDiceList(initDiceList());
     }
   };
 
