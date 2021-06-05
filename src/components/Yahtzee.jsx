@@ -105,8 +105,22 @@ const Yahtzee = () => {
   return (
     <div className="Yahtzee">
       <div className="Yahtzee-head">
-        <i className="Yahtzee-restart-icon fas fa-undo" onClick={handleClickRestart} onKeyDown={handleKeyDownRestart} role="button" tabIndex={-1} aria-label="rules" />
-        <i className="Yahtzee-rules-icon fas fa-question" onClick={handleClickRules} onKeyDown={handleKeyDownRules} role="button" tabIndex={0} aria-label="rules" />
+        <i
+          className="Yahtzee-restart-icon fas fa-undo"
+          onClick={handleClickRestart}
+          onKeyDown={handleKeyDownRestart}
+          role="button"
+          tabIndex={-1}
+          aria-label="rules"
+        />
+        <i
+          className="Yahtzee-rules-icon fas fa-question"
+          onClick={handleClickRules}
+          onKeyDown={handleKeyDownRules}
+          role="button"
+          tabIndex={0}
+          aria-label="rules"
+        />
         <h2> Yahtzee!! </h2>
         <GameBoard
           diceList={diceList}
@@ -119,7 +133,7 @@ const Yahtzee = () => {
       </div>
       <div className="Yahtzee-body">
         <h3 className="Yahtzee-body-title"> Upper </h3>
-        <RulesList rules={upperRules} evalScore={evalScore} scores={scores} />
+        <RulesList rules={upperRules} evalScore={evalScore} scores={scores} isUpper />
         <h3 className="Yahtzee-body-title"> Lower </h3>
         <RulesList rules={lowerRules} evalScore={evalScore} scores={scores} />
         <button className="Yahtzee-finalScores-button" type="button" onClick={handleClickFinalScores}>
