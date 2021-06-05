@@ -1,4 +1,5 @@
 import OnesRule from 'services/rules/OnesRule';
+import BonusRule from 'services/rules/BonusRule';
 import TwosRule from 'services/rules/TwosRule';
 import ThreesRule from 'services/rules/ThreesRule';
 import FoursRule from 'services/rules/FoursRule';
@@ -31,4 +32,6 @@ const lowerRules = [
   new Yahtzee(),
 ];
 
-export { lowerRules, upperRules };
+const bonusRule = new BonusRule();
+
+export { bonusRule, lowerRules, upperRules };
