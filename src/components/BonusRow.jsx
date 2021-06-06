@@ -18,7 +18,7 @@ const BonusRow = ({ evalScore, upperScore }) => {
         {bonusRule.name}
       </td>
       <td className="BonusRow-description">
-        {valid ? 63 : bonusRule.description}
+        {valid ? 35 : bonusRule.description}
       </td>
     </tr>
   );
