@@ -5,15 +5,19 @@ import { bonusRule } from 'services/rules/rules';
 
 import 'styles/BonusRow.css';
 
-const BonusRow = ({ evalScore, upperScore }) => {
+const BonusRow = ({ evalScore, upperRules, scores }) => {
+  const upperScore = Object.entries(scores)
+    .filter(([currentRuleName]) => (upperRules.some((rule) => (rule.name === currentRuleName))))
+    .reduce((acc, [_currentRuleName, currentScore]) => (acc + currentScore), 0); // eslint-disable-line no-unused-vars, max-len
+
   const valid = upperScore > 63;
 
-  if (valid) {
+  if (valid && Object.keys(scores).includes(bonusRule.name)) {
     evalScore(bonusRule);
   }
 
   return (
-    <tr className={`BonusRow BonusRow-${upperScore > 63 ? 'valid' : ''}`}>
+    <tr className={`BonusRow BonusRow-${valid ? 'valid' : ''}`}>
       <td className="BonusRow-name">
         {bonusRule.name}
       </td>
@@ -28,5 +32,6 @@ export default BonusRow;
 
 BonusRow.propTypes = {
   evalScore: PropTypes.func.isRequired,
-  upperScore: PropTypes.number.isRequired,
+  upperRules: PropTypes.arrayOf(PropTypes.object).isRequired,
+  scores: PropTypes.objectOf(PropTypes.number).isRequired,
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import BonusRow from 'components/BonusRow';
 import EndGameModal from 'components/EndGameModal';
 import FinalScoresModal from 'components/FinalScoresModal';
 import GameBoard from 'components/GameBoard';
@@ -135,7 +136,9 @@ const Yahtzee = () => {
       </div>
       <div className="Yahtzee-body">
         <h3 className="Yahtzee-body-title"> Upper </h3>
-        <RulesList rules={upperRules} evalScore={evalScore} scores={scores} isUpper />
+        <RulesList rules={upperRules} evalScore={evalScore} scores={scores} isUpper>
+          <BonusRow evalScore={evalScore} scores={scores} upperRules={upperRules} />
+        </RulesList>
         <h3 className="Yahtzee-body-title"> Lower </h3>
         <RulesList rules={lowerRules} evalScore={evalScore} scores={scores} />
         <button className="Yahtzee-finalScores-button" type="button" onClick={handleClickFinalScores}>
