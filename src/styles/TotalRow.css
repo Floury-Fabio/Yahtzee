@@ -1,0 +1,14 @@
+.TotalRow td {
+  width: 50%;
+  padding: 0.3em;
+  border-bottom: solid 1px black;
+  background-color: white;
+}
+
+.TotalRow-name  {
+  text-align: left;
+}
+
+.TotalRow-description  {
+  text-align: right;
+}

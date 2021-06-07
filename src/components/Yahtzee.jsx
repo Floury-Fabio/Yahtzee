@@ -7,6 +7,7 @@ import GameBoard from 'components/GameBoard';
 import RulesList from 'components/RulesList';
 import RulesModal from 'components/RulesModal';
 import RollButton from 'components/RollButton';
+import TotalRow from 'components/TotalRow';
 
 import { upperRules, lowerRules } from 'services/rules/rules';
 
@@ -22,6 +23,12 @@ const Yahtzee = () => {
 
   const score = Object.values(scores).reduce((acc, currentValue) => acc + currentValue, 0);
   const gameIsEnded = Object.keys(scores).length === upperRules.length + lowerRules.length;
+
+  const upperScore = Object.entries(scores)
+    .filter(([currentRuleName]) => (upperRules.some((rule) => (rule.name === currentRuleName))))
+    .reduce((acc, [_currentRuleName, currentScore]) => (acc + currentScore), 0); // eslint-disable-line no-unused-vars, max-len
+
+  const lowerScore = score - upperScore;
 
   const initDiceList = () => {
     const list = new Array(5).fill(1);
@@ -138,9 +145,12 @@ const Yahtzee = () => {
         <h3 className="Yahtzee-body-title"> Upper </h3>
         <RulesList rules={upperRules} evalScore={evalScore} scores={scores} isUpper>
           <BonusRow evalScore={evalScore} scores={scores} upperRules={upperRules} />
+          <TotalRow score={upperScore} />
         </RulesList>
         <h3 className="Yahtzee-body-title"> Lower </h3>
-        <RulesList rules={lowerRules} evalScore={evalScore} scores={scores} />
+        <RulesList rules={lowerRules} evalScore={evalScore} scores={scores}>
+          <TotalRow score={lowerScore} />
+        </RulesList>
         <button className="Yahtzee-finalScores-button" type="button" onClick={handleClickFinalScores}>
           FinalScores
         </button>
