@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 import 'styles/RuleRow.css';
 
-const RuleRow = ({ score, rule, evalScore }) => {
+const RuleRow = ({
+  score, rule, evalScore, rollsCount,
+}) => {
   const disabled = score || score === 0;
   const handleClick = () => {
-    if (!disabled) { evalScore(rule); }
+    if (!disabled && rollsCount !== 3) { evalScore(rule); }
   };
 
   return (
@@ -29,6 +31,7 @@ RuleRow.defaultProps = {
 
 RuleRow.propTypes = {
   evalScore: PropTypes.func.isRequired,
+  rollsCount: PropTypes.number.isRequired,
   rule: PropTypes.shape({
     description: PropTypes.string,
     name: PropTypes.string,
