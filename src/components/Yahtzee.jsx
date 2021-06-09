@@ -9,7 +9,7 @@ import RulesModal from 'components/RulesModal';
 import RollButton from 'components/RollButton';
 import TotalRow from 'components/TotalRow';
 
-import { upperRules, lowerRules } from 'services/rules/rules';
+import { bonusRule, upperRules, lowerRules } from 'services/rules/rules';
 
 import 'styles/Yahtzee.css';
 
@@ -25,10 +25,12 @@ const Yahtzee = () => {
   const gameIsEnded = Object.keys(scores).length === upperRules.length + lowerRules.length;
 
   const upperScore = Object.entries(scores)
-    .filter(([currentRuleName]) => (upperRules.some((rule) => (rule.name === currentRuleName))))
+    .filter(([currentRuleName]) => (upperRules.some((rule) => (
+      (rule.name === currentRuleName)) || currentRuleName === bonusRule.name)))
     .reduce((acc, [_currentRuleName, currentScore]) => (acc + currentScore), 0); // eslint-disable-line no-unused-vars, max-len
 
   const lowerScore = score - upperScore;
+  const upperScoreValid = upperScore > 63;
 
   const initDiceList = () => {
     const list = new Array(5).fill(1);
@@ -51,7 +53,6 @@ const Yahtzee = () => {
   };
 
   const evalScore = (rule) => {
-    if (rollsCount === 3) { return; }
     const dicesValues = diceList.map((dice) => dice.value);
     setScores({ ...scores, [rule.name]: rule.calcScore(dicesValues) });
     setRollsCount(3);
@@ -112,6 +113,12 @@ const Yahtzee = () => {
     }
   }, [scores]);
 
+  useEffect(() => {
+    if (upperScoreValid && !Object.keys(scores).includes(bonusRule.name)) {
+      setScores({ ...scores, [bonusRule.name]: 35 });
+    }
+  }, [scores]);
+
   return (
     <div className="Yahtzee">
       <div className="Yahtzee-head">
@@ -143,12 +150,23 @@ const Yahtzee = () => {
       </div>
       <div className="Yahtzee-body">
         <h3 className="Yahtzee-body-title"> Upper </h3>
-        <RulesList rules={upperRules} evalScore={evalScore} scores={scores} isUpper>
-          <BonusRow evalScore={evalScore} scores={scores} upperRules={upperRules} />
+        <RulesList
+          rules={upperRules}
+          evalScore={evalScore}
+          scores={scores}
+          rollsCount={rollsCount}
+          isUpper
+        >
+          <BonusRow
+            evalScore={evalScore}
+            scores={scores}
+            setScores={setScores}
+            valid={upperScoreValid}
+          />
           <TotalRow score={upperScore} />
         </RulesList>
         <h3 className="Yahtzee-body-title"> Lower </h3>
-        <RulesList rules={lowerRules} evalScore={evalScore} scores={scores}>
+        <RulesList rules={lowerRules} evalScore={evalScore} scores={scores} rollsCount={rollsCount}>
           <TotalRow score={lowerScore} />
         </RulesList>
         <button className="Yahtzee-finalScores-button" type="button" onClick={handleClickFinalScores}>
