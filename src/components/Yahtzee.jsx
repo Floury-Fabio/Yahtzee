@@ -20,9 +20,12 @@ const Yahtzee = () => {
   const [endGameModaldisplayed, setEndGameModalDisplayed] = useState(false);
   const [finalScoreDisplayed, setFinalScoreDisplayed] = useState(false);
   const [rulesDisplayed, setRulesDisplayed] = useState(false);
+  const [availableRulesCount, setAvailableRulesCount] = useState(
+    upperRules.length + lowerRules.length,
+  );
 
   const score = Object.values(scores).reduce((acc, currentValue) => acc + currentValue, 0);
-  const gameIsEnded = Object.keys(scores).length === upperRules.length + lowerRules.length;
+  const gameIsEnded = (availableRulesCount === 0);
 
   const upperScore = Object.entries(scores)
     .filter(([currentRuleName]) => (upperRules.some((rule) => (
@@ -57,6 +60,9 @@ const Yahtzee = () => {
     setScores({ ...scores, [rule.name]: rule.calcScore(dicesValues) });
     setRollsCount(3);
     setDiceList(initDiceList);
+    if (rule.name !== bonusRule.name) {
+      setAvailableRulesCount((prevCount) => prevCount - 1);
+    }
   };
 
   const handleClickRules = () => {
@@ -91,6 +97,7 @@ const Yahtzee = () => {
     setScores({});
     setRollsCount(3);
     setDiceList(initDiceList());
+    setAvailableRulesCount(upperRules.length + lowerRules.length);
   };
 
   const handleKeyDownRestart = (event) => {
