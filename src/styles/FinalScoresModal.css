@@ -23,6 +23,10 @@
   width: 80%;
 }
 
+.WorstScore {
+  color: red;
+}
+
 .FinalScoresModal-close {
   color: #aaa;
   float: right;
