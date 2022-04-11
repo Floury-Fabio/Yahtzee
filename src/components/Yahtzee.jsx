@@ -117,8 +117,12 @@ const Yahtzee = () => {
   useEffect(() => {
     if (gameIsEnded) {
       setEndGameModalDisplayed(true);
+      setScores({});
+      setRollsCount(3);
+      setDiceList(initDiceList());
+      setAvailableRulesCount(upperRules.length + lowerRules.length);
     }
-  }, [scores]);
+  }, [gameIsEnded]);
 
   useEffect(() => {
     if (upperScoreValid && !Object.keys(scores).includes(bonusRule.name)) {
