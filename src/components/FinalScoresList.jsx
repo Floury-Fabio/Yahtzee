@@ -1,14 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import uuid from 'react-uuid';
 
 import 'styles/FinalScoresModal.css';
 
-const FinalScoresList = () => {
-  const [sortedScores, setSortedScores] = useState();
+const FinalScoresList = ({ storedScores }) => {
+  const sortedScores = () => {
+    if (!storedScores || !Array.isArray(storedScores)) {
+      return [];
+    }
+
+    return storedScores.sort((a, b) => b.score - a.score);
+  };
 
   const worstScore = () => {
-    const score = sortedScores.at(-1);
+    const score = sortedScores().at(-1);
     return (
       <li key={uuid()} className="WorstScore" style={{ marginTop: '14px' }}>
         { `${score.nickname}: ${score.score}` }
@@ -17,7 +24,7 @@ const FinalScoresList = () => {
   };
 
   const bestScores = () => {
-    return sortedScores.slice(0, 10)
+    return sortedScores().slice(0, 10)
       .map((finalScore) => (
         <li key={uuid()}>
           { `${finalScore.nickname}: ${finalScore.score}` }
@@ -25,14 +32,7 @@ const FinalScoresList = () => {
       ));
   };
 
-  useEffect(() => {
-    const scores = JSON.parse(localStorage.getItem('finalScoresList'));
-    if (scores) {
-      setSortedScores(scores.sort((a, b) => b.score - a.score));
-    }
-  }, []);
-
-  if (!sortedScores) {
+  if (sortedScores().length === 0) {
     return (<p> no score </p>);
   }
 
@@ -45,3 +45,11 @@ const FinalScoresList = () => {
 };
 
 export default FinalScoresList;
+
+FinalScoresList.propTypes = {
+  storedScores: PropTypes.arrayOf(PropTypes.object),
+};
+
+FinalScoresList.defaultProps = {
+  storedScores: [],
+};

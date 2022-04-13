@@ -75,6 +75,13 @@ const Yahtzee = () => {
     }
   };
 
+  const resetGame = () => {
+    setScores({});
+    setRollsCount(3);
+    setDiceList(initDiceList());
+    setAvailableRulesCount(upperRules.length + lowerRules.length);
+  };
+
   const rollDices = () => {
     setDiceList(() => {
       const newDiceList = diceList.map((dice) => {
@@ -117,10 +124,6 @@ const Yahtzee = () => {
   useEffect(() => {
     if (gameIsEnded) {
       setEndGameModalDisplayed(true);
-      setScores({});
-      setRollsCount(3);
-      setDiceList(initDiceList());
-      setAvailableRulesCount(upperRules.length + lowerRules.length);
     }
   }, [gameIsEnded]);
 
@@ -192,6 +195,7 @@ const Yahtzee = () => {
         displayed={endGameModaldisplayed}
         score={score}
         setDisplayed={setEndGameModalDisplayed}
+        resetGame={resetGame}
       />
       <RulesModal displayed={rulesDisplayed} setDisplayed={setRulesDisplayed} />
     </div>

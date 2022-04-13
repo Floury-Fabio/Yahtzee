@@ -21,7 +21,7 @@ const FinalScoresModal = ({ displayed, setDisplayed }) => {
       <div className="FinalScoresModal-content">
         <span className="FinalScoresModal-close" role="button" tabIndex={0} onClick={handleClickClose} onKeyDown={handleKeyDownClose}>&times;</span>
         <h3 className="FinalScoresModal-title"> Final Scores </h3>
-        <FinalScoresList />
+        <FinalScoresList storedScores={JSON.parse(localStorage.getItem('finalScoresList'))} />
       </div>
     </div>
   );

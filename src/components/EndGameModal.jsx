@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import 'styles/EndGameModal.css';
 
-const EndGameModal = ({ displayed, setDisplayed, score }) => {
+const EndGameModal = ({
+  displayed, setDisplayed, score, resetGame,
+}) => {
   const [nickname, setNickname] = useState('');
   const handleClickClose = () => {
     setDisplayed(false);
@@ -28,6 +30,7 @@ const EndGameModal = ({ displayed, setDisplayed, score }) => {
     finalScoresList.push({ nickname, score });
     finalScoresList = JSON.stringify(finalScoresList);
     localStorage.setItem('finalScoresList', finalScoresList);
+    resetGame();
     setDisplayed(false);
   };
 
@@ -63,4 +66,5 @@ EndGameModal.propTypes = {
   displayed: PropTypes.bool.isRequired,
   score: PropTypes.number.isRequired,
   setDisplayed: PropTypes.func.isRequired,
+  resetGame: PropTypes.func.isRequired,
 };
