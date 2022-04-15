@@ -15,7 +15,7 @@ const FinalScoresList = ({ storedScores }) => {
   };
 
   const worstScore = () => {
-    const score = sortedScores().at(-1);
+    const score = sortedScores()[sortedScores().length - 1];
     return (
       <li key={uuid()} className="WorstScore" style={{ marginTop: '14px' }}>
         { `${score.nickname}: ${score.score}` }
